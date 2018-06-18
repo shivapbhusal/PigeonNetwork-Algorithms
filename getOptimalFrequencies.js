@@ -5,6 +5,23 @@
 
 function isConditionSatisfied ( frequency, delta )
 {
-	flag = false;
+	let flag = false;
+	frequency.forEach(function(value){
+		if (Math.abs(1-(Math.round(Number.parseFloat(frequency)) / value)) > delta)
+		{
+			flag = false;
+			return flag;
+		}
+		else {
+			flag = true;
+		}
+
+	});
+
+	return flag;
 
 }
+
+frequency = [0.9,0.1,0.08,10.01, 11.91]
+
+console.log(isConditionSatisfied(frequency,0.2));
