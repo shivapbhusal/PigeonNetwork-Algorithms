@@ -7,7 +7,8 @@ function isConditionSatisfied ( frequency, delta )
 {
 	let flag = false;
 	frequency.forEach(function(value){
-		if (Math.abs(1-(Math.round(Number.parseFloat(frequency)) / value)) > delta)
+		console.log(Math.abs(1-(Math.round(Number.parseFloat(value)) / value)));
+		if (Math.abs(1-(Math.round(Number.parseFloat(value)) / value)) > delta)
 		{
 			flag = false;
 			return flag;
