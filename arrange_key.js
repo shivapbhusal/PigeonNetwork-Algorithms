@@ -7,12 +7,13 @@
  Language : JavaScript ( ES6 ) 
  */
 
- function insertInPosition (resultArray, x){
+ function insertInPosition (resultArray, key, position){
  	start = 0; 
  	end = resultArray.length - 1;
  	const visitedSet = new Set();
 
  	let j = 1;
+ 	let i = position; 
 
  	 while (!(visitedSet.has(start) && (visitedSet.has(end)))){
     
@@ -20,7 +21,10 @@
     if (visitedSet.has(0)){
       i = i+j;
       j = 1;
-      console.log(i);
+      if (resultArray[i] == "X"){
+      	resultArray[i] = key;
+      	break;
+      }
       visitedSet.add(i);
     }
     
@@ -28,7 +32,10 @@
     else if (visitedSet.has(20)){
       i = i  -j;
       j = 1;
-      console.log(i);
+      if (resultArray[i] == "X"){
+      	resultArray[i] = key;
+      	break;
+      }
       visitedSet.add(i);
     }
     
@@ -41,20 +48,25 @@
       i = i - j;
     }
     j = j +1;
-    console.log(i);
+    if (resultArray[i] == "X"){
+      	resultArray[i] = key;
+      	break;
+      }
     visitedSet.add(i);
-    }
-   
-    
+    } 
   }
-
 
  }
 
 function arrangeKeys(finalResult, value, key){
 	if (value == 1){
 		let position = Math.floor(finalResult.length/2);
-		finalResult[position] = key;
+		if (finalResult[position] == "X"){
+			finalResult[position] = key;
+		}
+		else {
+			insertInPosition(finalResult, key, position);
+		}
 	}
 	else {
 		let position = 0;
@@ -64,20 +76,14 @@ function arrangeKeys(finalResult, value, key){
 				finalResult[position] = key;
 			}
 			else {
-				let left = position;
-				let right = position;
-				while (finalResult[i] !="X")
-				{
-					
-					i = i -1;
-				}
-				finalResult[i] = key;
+				insertInPosition(finalResult, key, position); 
 			}
 			position = position + Math.floor(finalResult.length/(value));
-		}
-		
+		}	
 	}
 }
+
+// Use
 
 const myMap = new Map();
 myMap.set("a",4); 
@@ -85,29 +91,14 @@ myMap.set("b", 2);
 myMap.set("c", 1);
 myMap.set("d", 2);
 
-result = []
-finalResult = []
+result = [];
+finalResult = [];
 
+let sum = 0;
 myMap.forEach((value, key)=> {
-  result.push({key:key,  val:value});
+  sum = sum + value;
 });
 
-console.log("Input");
-console.log(result);
-
-// Colculating sum of all values, Key with Max value etc.
-let sum = 0;
-let i = 0;
-maxValue = 0;
-maxKey = "X"; // One arbitrary value./ This can be improved.
-while (i<result.length){
-  sum = sum + result[i].val;
-  if (result[i].val>maxValue){
-    maxValue = result[i].val;
-    maxKey = result[i].key;
-  } 
-  i=i+1;
-}
 
 // Push an arbitary value X to the finalResult array.
 i = 0; 
