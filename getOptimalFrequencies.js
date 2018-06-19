@@ -33,7 +33,7 @@ function toIntegers(frequencies, delta){
 		}
 
 		aux.forEach((value, key) => {
-			aux.set(key, Math.round(aux.get(key)));
+			aux.set(key, Math.round(aux.get(key))); // Updated line
 		});
 
 	        console.log(k); //check the value of k.
