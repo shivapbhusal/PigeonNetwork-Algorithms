@@ -59,21 +59,22 @@ function isConditionSatisfied ( frequency, delta )
 }
 
 // Tests 
+const frequency1 = new Map();
+frequency1.set("A", 1.5);
+frequency1.set("B", 2.6);
+frequency1.set("C", 1.1);
 
-frequency = [1,1.1,1.08,10.01, 11.91]; // This should be true
-console.log(toIntegers(frequency,0.2));
+const frequency2 = new Map();
+frequency2.set("A", 1.1);
+frequency2.set("B", 1.7);
+frequency2.set("C", 12.4);
+frequency2.set("D", 1.59);
+frequency2.set("E", 100.1);
+frequency2.set("F", 3.9);
+frequency2.set("G", 10.2);
+frequency2.set("H", 39.7);
+frequency2.set("I", 89.59);
+frequency2.set("J", 100.90);
 
-frequency = [1.7,1.1,1.08,10.01, 11.91]; // This should be true. Note: 2 /1.7 = 1.18
-console.log(toIntegers(frequency,0.2));
-
-frequency = [1.6,1.1,1.08,10.01, 11.91]; // This should be false, because 2 / 1.6 = 1.25 ]
-console.log(isConditionSatisfied(frequency,0.2));
-
-frequency = [1.1,1.3,1.1,1.08,10.01, 11.91]; // This should be false. 1/ 1.3 = 0.76
-console.log(isConditionSatisfied(frequency,0.2));
-
-frequency = [1,2, 3, 4, 5, 1.4]; // This should be false.
-console.log(isConditionSatisfied(frequency, 0.2));
-
-frequency = [1,2, 3, 4, 5, 0.84]; // This should be true. 1 / 0.84 = 1.19.
-console.log(isConditionSatisfied(frequency, 0.2));
+console.log(toIntegers(frequency1,0.2));
+console.log(toIntegers(frequency2,0.2));
