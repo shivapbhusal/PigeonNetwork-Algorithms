@@ -7,7 +7,51 @@
  Language : JavaScript ( ES6 ) 
  */
 
-function insertKeys(finalResult, value, key){
+ function insertInPosition (resultArray, x){
+ 	start = 0; 
+ 	end = resultArray.length - 1;
+ 	const visitedSet = new Set();
+
+ 	let j = 1;
+
+ 	 while (!(visitedSet.has(start) && (visitedSet.has(end)))){
+    
+    // If starting point is already reached, start moving to right.
+    if (visitedSet.has(0)){
+      i = i+j;
+      j = 1;
+      console.log(i);
+      visitedSet.add(i);
+    }
+    
+    // If End point is reached, start moving to left.
+    else if (visitedSet.has(20)){
+      i = i  -j;
+      j = 1;
+      console.log(i);
+      visitedSet.add(i);
+    }
+    
+    // Else, start moving left and right simultaneously. 
+    else {
+      if (j %2 ==0){
+      i = i +j;
+    }
+    else {
+      i = i - j;
+    }
+    j = j +1;
+    console.log(i);
+    visitedSet.add(i);
+    }
+   
+    
+  }
+
+
+ }
+
+function arrangeKeys(finalResult, value, key){
 	if (value == 1){
 		let position = Math.floor(finalResult.length/2);
 		finalResult[position] = key;
@@ -73,7 +117,7 @@ while (i<sum){
 }
 
 myMap.forEach((value, key)=>{ 
-  insertKeys(finalResult, value, key);
+  arrangeKeys(finalResult, value, key);
 });
 
 console.log("Result:");
