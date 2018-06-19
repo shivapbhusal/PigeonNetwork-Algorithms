@@ -38,3 +38,6 @@ console.log(isConditionSatisfied(frequency,0.2));
 
 frequency = [1,2, 3, 4, 5, 1.4]; // This should be false.
 console.log(isConditionSatisfied(frequency, 0.2));
+
+frequency = [1,2, 3, 4, 5, 0.84]; // This should be true. 1 / 0.84 = 1.19.
+console.log(isConditionSatisfied(frequency, 0.2));
