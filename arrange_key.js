@@ -7,6 +7,27 @@
  Language : JavaScript ( ES6 ) 
  */
 
+function isEverythingVisited(set, start, end){
+	counter = 0; 
+	for (let item of set) {
+		if (item >=start) {
+			counter = counter +1; 
+		}
+
+		if (item <=start) {
+			counter = counter +1; 
+		}
+	}
+	if (counter >1){
+		return true; 
+	}
+
+	else {
+		return false; 
+	}
+}
+
+ 
  function insertInPosition (resultArray, key, position){
  	start = 0; 
  	end = resultArray.length - 1;
@@ -15,10 +36,10 @@
  	let j = 1;
  	let i = position; 
 
- 	 while (!(visitedSet.has(start) && (visitedSet.has(end)))){
+    while (!(isEverythingVisited(visitedSet, start, end))){
     
-    // If starting point is already reached, start moving to right.
-    if (visitedSet.has(0)){
+        // If starting point is already reached, start moving to right.
+      if (visitedSet.has(start)){
       i = i+j;
       j = 1;
       if (resultArray[i] == "X"){
@@ -29,7 +50,7 @@
     }
     
     // If End point is reached, start moving to left.
-    else if (visitedSet.has(20)){
+    else if (visitedSet.has(end)){
       i = i  -j;
       j = 1;
       if (resultArray[i] == "X"){
