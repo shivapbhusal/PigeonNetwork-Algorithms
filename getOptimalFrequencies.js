@@ -77,6 +77,15 @@ frequency2.set("I", 89.59);
 frequency2.set("J", 100.90);
 frequency2.set("K", 1.91);
 frequency2.set("L", 200.69);
+frequency2.set("M", 1.82);
+frequency2.set("N", 1.77);
+frequency2.set("O", 12.69);
+frequency2.set("P", 1.20);
+frequency2.set("Q", 100.41);
+frequency2.set("R", 3.31);
+frequency2.set("S", 10.2);
+frequency2.set("T", 39.7);
+frequency2.set("U", 99.59);
 
 console.log(toIntegers(frequency1,0.1));
 console.log(toIntegers(frequency2,0.1));
