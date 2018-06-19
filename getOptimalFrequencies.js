@@ -3,7 +3,7 @@
  * We want to transform these frequencies in such a way that they are integers and their ratio is closest to the original.
  * The 'closeness" is defined by delta.
  * The function isConditionSatisfied is used to check that "closeness" condition. 
- * Special case : 0.1, 0.2 etc.. In this special case, New frequency is 0 and it becomes 0 / 0.1. So it becomes [1-0 ] == 1 which is greater than delta.So,It should be treated differently.
+ * Special case : 0.1, 0.2, 0.3 ...0.49999.In this special case, New frequency is 0 and it becomes 0 / 0.1. So it becomes [1-0 ] == 1 which is greater than delta.So,It should be treated differently.
   */
 
 function isConditionSatisfied ( frequency, delta )
