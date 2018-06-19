@@ -8,7 +8,7 @@
 */
 
 
-function toIntegers(frequencies, delta) : Map<DecoratedNode, number> {
+function toIntegers(frequencies, delta){
 		const aux = new Map();
 
 		frequencies.forEach((value, key) => {
@@ -22,7 +22,7 @@ function toIntegers(frequencies, delta) : Map<DecoratedNode, number> {
 			aux.set(key, frequencies.get(key) * k);
 		};
 
-		while (!Deterministic.isConditionSatisfied(aux, delta)) {
+		while (!isConditionSatisfied(aux, delta)) {
 			aux.forEach(setter);
 
 			k += 1;
@@ -33,12 +33,13 @@ function toIntegers(frequencies, delta) : Map<DecoratedNode, number> {
 		}
 
 		aux.forEach((value, key) => {
-			aux.set(key, parseInt(aux.get(key), 10));
+			aux.set(key, Math.round(aux.get(key)));
 		});
+
+	        console.log(k); //check the value of k.
 
 		return aux;
 	}
-}
 
 
 function isConditionSatisfied ( frequency, delta )
