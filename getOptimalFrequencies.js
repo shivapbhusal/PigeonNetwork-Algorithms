@@ -1,10 +1,10 @@
+
 /* JavaScript code to check if condition is satisfied for  optimal frequency.
  * Suppose our frequencies are [ 1.9, 1.8, 1.5, 10.5, 11.6 ] 
  * We want to transform these frequencies in such a way that they are integers and their ratio is closest to the original.
  * The 'closeness" is defined by delta.
- * The function isConditionSatisfied is used to check that "closeness" condition. 
- * Special case [This case is not possible] : 0.1, 0.2 etc.. In this special case, New frequency is 0 and it becomes 0 / 0.1. So it becomes [1-0 ] == 1 which is greater than delta.So,It should be treated differently.
-  */
+ * The function isConditionSatisfied is used to check that 
+*/
 
 function isConditionSatisfied ( frequency, delta )
 {
