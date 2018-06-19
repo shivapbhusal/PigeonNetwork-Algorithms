@@ -1,4 +1,4 @@
-/* JavaScript code to check if condition is satisfied for  optimal frequency.
+/*
  * Suppose our frequencies are [ 0.9, 0.8, 0.5, 10.5, 11.6 ] 
  * We want to transform these frequencies in such a way that they are integers and their ratio is closest to the original.
  * The 'closeness" is defined by delta.
