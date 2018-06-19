@@ -34,6 +34,8 @@ function isConditionSatisfied ( frequency, delta )
 
 }
 
+// Tests 
+
 frequency = [1.9,1.1,1.08,10.01, 11.91]; // This should be true
 console.log(isConditionSatisfied(frequency,0.2));
 
@@ -45,3 +47,6 @@ console.log(isConditionSatisfied(frequency,0.2));
 
 frequency = [0.1,1.3,1.1,1.08,10.01, 11.91]; // This should be false. 1/ 1.3 = 0.76
 console.log(isConditionSatisfied(frequency,0.2));
+
+frequency = [1,2, 3, 4, 5, 0.4]; // This should be false.
+console.log(isConditionSatisfied(frequency, 0.2));
