@@ -8,7 +8,7 @@
  */
  
  function insertInPosition (resultArray, key, position){
-  console.log(key);
+  // console.log(key);
   let j = 1;
   while (resultArray[position] != "X"){
     if (position == 0){
@@ -47,9 +47,14 @@ function arrangeKeys(finalResult, value, key){
 		let position = 0;
 		counter = 0;
 		while (counter<value) {
-			insertInPosition(finalResult, key, position); 
+			insertInPosition(finalResult, key, position);
+			if ((position + Math.floor((finalResult.length)/value))>finalResult.length){
+			position = finalResult.length - 1;
+			}
+			else {
 			position = position + Math.floor((finalResult.length)/value);
 			counter = counter + 1;
+			}
 		}	
 	}
 }
@@ -60,16 +65,18 @@ const myMap = new Map();
 myMap.set("a",5); 
 myMap.set("b", 4);
 myMap.set("c", 1);
-//myMap.set("d", 2);
-//myMap.set("e", 1);
+myMap.set("d", 2);
+myMap.set("e", 1);
+myMap.set("f", 2);
 
-result = [];
+console.log(myMap);
 finalResult = [];
 
 let sum = 0;
 myMap.forEach((value, key)=> {
   sum = sum + value;
 });
+
 
 
 // Push an arbitary value X to the finalResult array.
