@@ -29,14 +29,23 @@ function isEverythingVisited(set, start, end){
 
  
  function insertInPosition (resultArray, key, position){
- 	start = 0; 
+
+ 	console.log(key);
+
+ 	if (resultArray[i] == "X"){
+      	resultArray[i] = key;
+      }
+
+    else {
+
+    start = 0; 
  	end = resultArray.length - 1;
  	const visitedSet = new Set();
 
  	let j = 1;
- 	let i = position; 
+ 	let i = position;
 
-    while (!(isEverythingVisited(visitedSet, start, end))){
+ 	while (!(isEverythingVisited(visitedSet, start, end))){
     
         // If starting point is already reached, start moving to right.
       if (visitedSet.has(start)){
@@ -44,7 +53,6 @@ function isEverythingVisited(set, start, end){
       j = 1;
       if (resultArray[i] == "X"){
       	resultArray[i] = key;
-      	break;
       }
       visitedSet.add(i);
     }
@@ -77,29 +85,20 @@ function isEverythingVisited(set, start, end){
     } 
   }
 
- }
+    }
+}
+ 	
 
 function arrangeKeys(finalResult, value, key){
 	if (value == 1){
-		let position = Math.floor(finalResult.length/2);
-		if (finalResult[position] == "X"){
-			finalResult[position] = key;
-		}
-		else {
-			insertInPosition(finalResult, key, position);
-		}
+		let position = Math.floor((finalResult.length)/2);
+		insertInPosition(finalResult, key, position);
 	}
 	else {
 		let position = 0;
 		while (position <= finalResult.length -1) {
-			//console.log(key);
-			if (finalResult[position] == "X"){
-				finalResult[position] = key;
-			}
-			else {
-				insertInPosition(finalResult, key, position); 
-			}
-			position = position + Math.floor(finalResult.length/(value));
+			insertInPosition(finalResult, key, position); 
+			position = position + Math.floor((finalResult.length-1)/value);
 		}	
 	}
 }
@@ -127,6 +126,8 @@ while (i<sum){
   finalResult.push("X"); 
   i = i+1;
 }
+
+console.log(finalResult);
 
 myMap.forEach((value, key)=>{ 
   arrangeKeys(finalResult, value, key);
