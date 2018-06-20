@@ -85,5 +85,7 @@ myMap.forEach((value, key)=>{
   arrangeKeys(finalResult, value, key);
 });
 
+// console.log(value);
+
 console.log("Result:");
 console.log(finalResult);
