@@ -6,88 +6,37 @@
 
  Language : JavaScript ( ES6 ) 
  */
-
-function isEverythingVisited(set, start, end){
-	counter = 0; 
-	for (let item of set) {
-		if (item >=start) {
-			counter = counter +1; 
-		}
-
-		if (item <=start) {
-			counter = counter +1; 
-		}
-	}
-	if (counter >1){
-		return true; 
-	}
-
-	else {
-		return false; 
-	}
-}
-
  
  function insertInPosition (resultArray, key, position){
+  console.log(key);
+  let j = 1;
+  while (resultArray[position] != "X"){
+    if (position == 0){
+      position = position + 1;
+    }
 
- 	console.log(key);
-
- 	if (resultArray[i] == "X"){
-      	resultArray[i] = key;
-      }
+    else if (position == (resultArray.length-1)){
+      position = position - 1;
+    }
 
     else {
-
-    start = 0; 
- 	end = resultArray.length - 1;
- 	const visitedSet = new Set();
-
- 	let j = 1;
- 	let i = position;
-
- 	while (!(isEverythingVisited(visitedSet, start, end))){
-    
-        // If starting point is already reached, start moving to right.
-      if (visitedSet.has(start)){
-      i = i+j;
-      j = 1;
-      if (resultArray[i] == "X"){
-      	resultArray[i] = key;
+      if (j%2 == 1){
+        position = position + j;
       }
-      visitedSet.add(i);
-    }
-    
-    // If End point is reached, start moving to left.
-    else if (visitedSet.has(end)){
-      i = i  -j;
-      j = 1;
-      if (resultArray[i] == "X"){
-      	resultArray[i] = key;
-      	break;
+      else {
+        position = position - j;
       }
-      visitedSet.add(i);
+
+      j = j + 1;
+      
     }
-    
-    // Else, start moving left and right simultaneously. 
-    else {
-      if (j %2 ==0){
-      i = i +j;
-    }
-    else {
-      i = i - j;
-    }
-    j = j +1;
-    if (resultArray[i] == "X"){
-      	resultArray[i] = key;
-      	break;
-      }
-    visitedSet.add(i);
-    } 
   }
 
-    }
+  resultArray[position] = key; 
+
+  console.log(resultArray);
 }
- 	
+	
 
 function arrangeKeys(finalResult, value, key){
 	if (value == 1){
@@ -96,9 +45,11 @@ function arrangeKeys(finalResult, value, key){
 	}
 	else {
 		let position = 0;
-		while (position <= finalResult.length -1) {
+		counter = 0;
+		while (counter<value) {
 			insertInPosition(finalResult, key, position); 
-			position = position + Math.floor((finalResult.length-1)/value);
+			position = position + Math.floor((finalResult.length)/value);
+			counter = counter + 1;
 		}	
 	}
 }
@@ -106,10 +57,11 @@ function arrangeKeys(finalResult, value, key){
 // Use
 
 const myMap = new Map();
-myMap.set("a",4); 
-myMap.set("b", 2);
+myMap.set("a",5); 
+myMap.set("b", 4);
 myMap.set("c", 1);
-myMap.set("d", 2);
+//myMap.set("d", 2);
+//myMap.set("e", 1);
 
 result = [];
 finalResult = [];
