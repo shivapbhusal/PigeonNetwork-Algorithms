@@ -12,7 +12,12 @@ function generateRandomFloat(min, max){
 return ((Math.random() * (max - min))+min).toFixed(4);
 }
 
-const N = 5; // No of foreign host.
+if (!process.argv[2]){
+	console.log("Enter the no of nodes");
+	process.exit();
+}
+
+const N = process.argv[2]; // No of foreign host.
 const S_MAX = 2;
 let homeHost = new Map();
 homeHost.set("x",0);
@@ -55,7 +60,7 @@ for (let foreignHost of foreignHosts){
 }
 
 s = maxRatio / minRatio;
-// console.log(s);
+console.log(s);
 iterations += 1;
 }
 
