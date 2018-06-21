@@ -2,8 +2,10 @@
  Nodejs script to adjust the perfect randomness.
  Brute Force solution -- Run the loop until the condition is satisfied.
 
- Optimized solution: Keep the generate random floats between two close floats
- */
+ Optimized solution: Keep the generate random floats between two close floats.This will make sure that distance from host host and the lamda remain almost similar for all the foreign hosts.
+ Optimized solution is nothing but a careful bruteforce which heavily reduces the no of iterations needed to get to the required result.
+
+*/
 function calculateDistance(homeHost, foreignHost){
 	let distance = Math.sqrt(Math.pow(homeHost.get("x")-foreignHost.get("x"),2)+ 
 		Math.pow(homeHost.get("y") - foreignHost.get("y"),2));
@@ -21,7 +23,7 @@ if (!process.argv[2]){
 }
 
 const N = process.argv[2]; // No of foreign host.
-const S_MAX = 1.3;
+const S_MAX = 1.1;
 let homeHost = new Map();
 homeHost.set("x",0);
 homeHost.set("y",0);
@@ -38,9 +40,9 @@ while (s>S_MAX){
 foreignHosts = [];
 // Create N number of foreign host
 for (let i = 0; i<N; i+=1){
-	let x = generateRandomFloat(0.2,0.3);
-	let y = generateRandomFloat(0.2,0.3);
-	let lambda = generateRandomFloat(0.8,0.9);
+	let x = generateRandomFloat(0.25,0.3);
+	let y = generateRandomFloat(0.25,0.3);
+	let lambda = generateRandomFloat(0.85,0.9);
 	const temp = new Map();
 	temp.set("x", x);
 	temp.set("y", y);
