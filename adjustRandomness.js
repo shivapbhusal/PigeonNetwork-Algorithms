@@ -3,23 +3,30 @@
  Brute Force solution -- Run the loop until the condition is satisfied.
  */
 function calculateDistance(homeHost, foreignHost){
-let distance = Math.sqrt(Math.pow(homeHost.get("x")-foreignHost.get("x"),2)+ 
+	let distance = Math.sqrt(Math.pow(homeHost.get("x")-foreignHost.get("x"),2)+ 
 		Math.pow(homeHost.get("y") - foreignHost.get("y"),2));
-return distance;
+	return distance;
+}
+
+function generateRandomFloat(min, max){
+return ((Math.random() * (max - min))+min).toFixed(4);
 }
 
 const N = 5; // No of foreign host.
-const homeHost =new Map();
+const S_MAX = 2;
+let homeHost = new Map();
 homeHost.set("x",0);
 homeHost.set("y",0);
 
-foreignHosts = [];
+let foreignHosts;
 
 let s = Infinity;
 let minRatio;
 let maxRatio;
 
-while (s>5){ 
+let iterations = 0;
+while (s>S_MAX){ 
+foreignHosts = [];
 // Create N number of foreign host
 for (let i = 0; i<N; i+=1){
 	let x = Math.random();
@@ -48,12 +55,13 @@ for (let foreignHost of foreignHosts){
 }
 
 s = maxRatio / minRatio;
-console.log(s);
+// console.log(s);
+iterations += 1;
 }
 
-
+console.log("Iterations:", iterations);
 console.log("Solution Cell:");
-console.log(minRatio);
-console.log(maxRatio)
-
-console.log(foreignHosts);
+console.log("Min Ratio:",minRatio);
+console.log("Max Ratio",maxRatio);
+console.log("s:",s);
+console.log("ForeignHost",foreignHosts);
