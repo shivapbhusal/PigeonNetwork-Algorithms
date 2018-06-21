@@ -1,6 +1,8 @@
 /*
  Nodejs script to adjust the perfect randomness.
  Brute Force solution -- Run the loop until the condition is satisfied.
+
+ Optimized solution: Keep the generate random floats between two close floats
  */
 function calculateDistance(homeHost, foreignHost){
 	let distance = Math.sqrt(Math.pow(homeHost.get("x")-foreignHost.get("x"),2)+ 
@@ -9,16 +11,17 @@ function calculateDistance(homeHost, foreignHost){
 }
 
 function generateRandomFloat(min, max){
-return ((Math.random() * (max - min))+min).toFixed(4);
+      return ((Math.random() * (max - min))+min).toFixed(4);
 }
 
+// Get the number of nodes. If there is no argument, exit the program.
 if (!process.argv[2]){
 	console.log("Enter the no of nodes");
 	process.exit();
 }
 
 const N = process.argv[2]; // No of foreign host.
-const S_MAX = 2;
+const S_MAX = 1.3;
 let homeHost = new Map();
 homeHost.set("x",0);
 homeHost.set("y",0);
@@ -30,13 +33,14 @@ let minRatio;
 let maxRatio;
 
 let iterations = 0;
+// Continue creating new cell until condition gets satisfied.
 while (s>S_MAX){ 
 foreignHosts = [];
 // Create N number of foreign host
 for (let i = 0; i<N; i+=1){
-	let x = Math.random();
-	let y = Math.random();
-	let lambda = Math.random();
+	let x = generateRandomFloat(0.2,0.3);
+	let y = generateRandomFloat(0.2,0.3);
+	let lambda = generateRandomFloat(0.8,0.9);
 	const temp = new Map();
 	temp.set("x", x);
 	temp.set("y", y);
@@ -46,6 +50,8 @@ for (let i = 0; i<N; i+=1){
 
 maxRatio = 0;
 minRatio = Infinity;
+
+// Computing minRatio, maxRatio and s.
 for (let foreignHost of foreignHosts){
 	distance=calculateDistance(homeHost, foreignHost);
         lambda = foreignHost.get("lambda");
@@ -69,4 +75,5 @@ console.log("Solution Cell:");
 console.log("Min Ratio:",minRatio);
 console.log("Max Ratio",maxRatio);
 console.log("s:",s);
-console.log("ForeignHost",foreignHosts);
+console.log("ForeignHosts in the cell:");
+console.log(foreignHosts);
