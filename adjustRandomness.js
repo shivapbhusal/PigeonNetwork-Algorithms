@@ -1,5 +1,6 @@
 /*
  Nodejs script to adjust the perfect randomness.
+ Brute Force solution -- Run the loop until the condition is satisfied.
  */
 function calculateDistance(homeHost, foreignHost){
 let distance = Math.sqrt(Math.pow(homeHost.get("x")-foreignHost.get("x"),2)+ 
@@ -7,20 +8,52 @@ let distance = Math.sqrt(Math.pow(homeHost.get("x")-foreignHost.get("x"),2)+
 return distance;
 }
 
-const homeHost = {"x":0,"y":0};
+const N = 5; // No of foreign host.
+const homeHost =new Map();
+homeHost.set("x",0);
+homeHost.set("y",0);
+
 foreignHosts = [];
 
-for (let i = 0; i<=5; i+=1){
+let s = Infinity;
+let minRatio;
+let maxRatio;
+
+while (s>5){ 
+// Create N number of foreign host
+for (let i = 0; i<N; i+=1){
 	let x = Math.random();
 	let y = Math.random();
 	let lambda = Math.random();
-
-	let temp = {"x":x,"y":y,"lambda":lambda};
+	const temp = new Map();
+	temp.set("x", x);
+	temp.set("y", y);
+	temp.set("lambda", lambda);
 	foreignHosts.push(temp);
 }
 
+maxRatio = 0;
+minRatio = Infinity;
 for (let foreignHost of foreignHosts){
-	console.log(calculateDistance(homeHost, foreignHost));
+	distance=calculateDistance(homeHost, foreignHost);
+        lambda = foreignHost.get("lambda");
+        ratio = lambda / distance;
+	// console.log(ratio);
+	if (ratio <minRatio){
+		minRatio = ratio;
+	}
+	if (ratio >maxRatio){
+		maxRatio = ratio;
+	}
 }
 
-console.log(foreignHost);
+s = maxRatio / minRatio;
+console.log(s);
+}
+
+
+console.log("Solution Cell:");
+console.log(minRatio);
+console.log(maxRatio)
+
+console.log(foreignHosts);
