@@ -29,11 +29,31 @@ homeHost.set("x",0);
 homeHost.set("y",0);
 
 let foreignHosts = [];
-const FIRST_NODE = parseFloat(Math.random().toFixed(4));
-foreignHosts.push(FIRST_NODE);
+let first_node = new Map();
+const S_FOR_FIRST_NODE = parseFloat(Math.random().toFixed(4));
+let x = Math.random();
+let y = Math.random();
+let distance = Math.sqrt((-homeHost.get("x"),2)+
+		       Math.pow(y - homeHost.get("y"),2));
+let lambda = S_FOR_FIRST_NODE * distance;
+first_node.set("x", x);
+first_node.set("y", y);
+first_node.set("lambda", lambda);
+
+foreignHosts.push(first_node);
+
 for (let i=0; i<N-1; i+= 1){
-	let s = generateRandomFloat(FIRST_NODE, FIRST_NODE*S_MAX);
-	foreignHosts.push(s);
+	const temp = new Map();
+	let x = Math.random();
+	let y = Math.random();
+	let s = generateRandomFloat(S_FOR_FIRST_NODE, S_FOR_FIRST_NODE*S_MAX);
+	let distance = Math.sqrt((x-homeHost.get("x"),2)+
+		       Math.pow(y - homeHost.get("y"),2));
+	let lambda = s * distance;
+	temp.set("x", x);
+	temp.set("y", y);
+	temp.set("lambda", lambda);
+	foreignHosts.push(temp);
 }
 
 console.log(foreignHosts);
