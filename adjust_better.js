@@ -15,7 +15,7 @@ function generateRandomFloat(min, max){
 }
 
 // Function to compute s in a set of foreignHosts
-function calculateS(foreignHosts)
+function calculateS(homeHost,foreignHosts)
 {
 	let minRatio = Infinity;
 	let maxRatio = 0;
@@ -30,8 +30,7 @@ function calculateS(foreignHosts)
 	if (ratio >maxRatio){
 		maxRatio = ratio;
 	}
-}
-
+     }
 s = maxRatio / minRatio;
 return s;
 }
@@ -42,9 +41,11 @@ if (!process.argv[2]){
 	process.exit();
 }
 
+const NO_OF_FOREIGN_HOSTS = process.argv[2]; // No of foreign host.
+const S_INDEX = 1.1; // Adjust this index as per need.
+const NO_OF_CELLS = 10;
 
-const N = process.argv[2]; // No of foreign host.
-const S_INDEX = 1.1;
+for (let a = 0; a <NO_OF_CELLS; a += 1){  
 
 // Create a Home Host.
 let homeHost = new Map();
@@ -66,7 +67,7 @@ first_node.set("lambda", lambda);
 foreignHosts.push(first_node);
 
 // Get rest of the Nodes 
-for (let i=0; i<N-1; i+= 1){
+for (let i=0; i<NO_OF_FOREIGN_HOSTS-1; i+= 1){
 	const temp = new Map();
 	let x = Math.random();
 	let y = Math.random();
@@ -84,5 +85,6 @@ console.log(foreignHosts);
 
 // Test the s value for generated set of ForeignHosts. 
 
-console.log("S:",calculateS(foreignHosts));
+console.log("S:",calculateS(homeHost,foreignHosts));
 
+}
