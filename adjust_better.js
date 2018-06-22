@@ -13,7 +13,7 @@ function calculateDistance(homeHost, foreignHost){
 }
 
 function generateRandomFloat(min, max){
-      return (min+Math.random()*(max - min)).toFixed(4);
+      return parseFloat((min+Math.random()*(max - min)).toFixed(4));
 }
 
 // Get the number of nodes. If there is no argument, exit the program.
@@ -29,7 +29,7 @@ homeHost.set("x",0);
 homeHost.set("y",0);
 
 let foreignHosts = [];
-const FIRST_NODE = Math.random().toFixed(4);
+const FIRST_NODE = parseFloat(Math.random().toFixed(4));
 foreignHosts.push(FIRST_NODE);
 for (let i=0; i<N-1; i+= 1){
 	let s = generateRandomFloat(FIRST_NODE, FIRST_NODE*S_MAX);
