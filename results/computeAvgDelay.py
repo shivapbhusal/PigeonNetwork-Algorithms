@@ -1,5 +1,12 @@
 '''
-Python Script to compute average delay.
+Python script to calculate average delay from a given json file of results.
+
+Example, given json file can be like this: 
+{"1":{"rr": 10, "prob": 20,"det":10,"drr": 30},
+"2":{"rr": 10, "prob": 20,"det":30,"drr": 30}, 
+"3":{"rr": 10, "prob": 20,"det":30,"drr": 30}
+}
+
 '''
 
 import os
@@ -15,9 +22,9 @@ N = 0
 
 with open(result_file, "r") as jsonData:
     parsedJson = json.load(jsonData)
-    for resultId in parsedJson:
+    for resultId in parsedJson: #Get all the keys from parseJson.
         N = N+1
-        try:
+        try: #Gets the sum of all the results.
             result = parsedJson[resultId]
             avgResults["rr"] += float(result["rr"])
             avgResults["prob"] += float(result["prob"])
@@ -29,12 +36,13 @@ with open(result_file, "r") as jsonData:
 jsonData.close()
 
 for keys in avgResults:
-    avgResults[keys] /= N
+    avgResults[keys] /= N #Calculates average.
 
 print(avgResults)
 
+
 '''
-Start the bargraph
+Start the Bargraph.
 '''
 
 avgDelay = [] #Y-axis
