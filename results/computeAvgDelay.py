@@ -15,7 +15,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-result_file = sys.argv[1]
+result_file = sys.argv[1] #Get the path of the Json file.
 
 avgResults = {"rr":0, "prob":0, "det":0, "drr":0}
 N = 0
