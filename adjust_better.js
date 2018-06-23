@@ -42,9 +42,11 @@ if (!process.argv[2]){
 }
 
 const NO_OF_FOREIGN_HOSTS = process.argv[2]; // No of foreign host.
-const S_INDEX = 1.1; // Adjust this index as per need.
-const NO_OF_CELLS = 10;
+const S_INDEX = 1000; // Adjust this index as per need. S is Symmetry factor. Ranges from 1 to S_INDEX [ MAX_S_INDEX]
+const NO_OF_CELLS = 2;
 
+
+// Generating different configurations for experiment.
 for (let a = 0; a <NO_OF_CELLS; a += 1){  
 
 // Create a Home Host.
@@ -56,7 +58,7 @@ let foreignHosts = [];
 
 // Get the first Node.
 let first_node = new Map();
-const S_FOR_FIRST_NODE = parseFloat(Math.random().toFixed(4));
+const S_FOR_FIRST_NODE = parseFloat(Math.random().toFixed(4)); // Just a ratio, not S.
 let x = Math.random();
 let y = Math.random();
 let distance = Math.sqrt(Math.pow(x-homeHost.get("x"),2)+Math.pow(y - homeHost.get("y"),2));
@@ -64,7 +66,7 @@ let lambda = S_FOR_FIRST_NODE * distance;
 first_node.set("x", x);
 first_node.set("y", y);
 first_node.set("lambda", lambda);
-foreignHosts.push(first_node);
+foreignHosts.push(first_node); // [{"x":0.1, "y":0.5, "lambda":0.99}]
 
 // Get rest of the Nodes 
 for (let i=0; i<NO_OF_FOREIGN_HOSTS-1; i+= 1){
