@@ -7,15 +7,21 @@ var fs = require("fs");
 function strMapToObj(strMap) {
     let obj = Object.create(null);
     for (let [k,v] of strMap) {
-        // We don’t escape the key '__proto__'
-        // which can cause problems on older engines
-        obj[k] = v;
+        // Start the inner key value pair.
+	let temp = Object.create(null);
+	for (let [innerK, innerV] of v){
+		temp[innerK] = innerV;
+	}
+        obj[k] = temp;
     }
     return obj;
 }
 
-myMap = new Map().set("rr",1).set("prob",2).set("det",3);
+tempMap = new Map().set("rr",1).set("prob",2).set("det",3);
+myMap = new Map().set("1",tempMap).set("2",tempMap).set("3",tempMap);
 sampleObject = strMapToObj(myMap);
+
+console.log(sampleObject);
 
 fs.writeFile("object.json", JSON.stringify(sampleObject, null, 4), (err) => {
     if (err) {
