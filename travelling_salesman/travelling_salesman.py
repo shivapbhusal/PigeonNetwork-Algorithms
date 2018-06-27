@@ -1,61 +1,63 @@
 '''
 Python implementation of the famous travelling salesman problem.
-In this implementation, we just care whether all nodes are traversed.
+In this implementation,each node has to be visisted only once during the traversal.
 '''
-def areAllNodesVisited(path, adj):
-    ans = True
-    for keys in adj.keys():
-        if keys not in path:
-            ans = False
-    return ans
+import math
+import itertools
 
 def getCost(weights, path):
+    '''
+    Given the weights and Paths, compute the totalCost of traversal.
+    '''
     i = 0
     j = 1
     totalCost = 0
     while j < len(path):
         temp = weights[path[i]]
-        totalCost += temp[path[j]]
+        try:
+            totalCost += temp[path[j]]
+        except KeyError:
+            return math.inf
         i = i+1
         j= j+1
     return totalCost
 
-
-def findPath(adj,start, path):
-    while not (areAllNodesVisited(path, adj)):
-        if start not in path:
-            path.append(start)
-        adjList = adj[start]
-        for current in adjList:
-            if current not in path:
-                path.append(current)
-                findPath(adj, current, path)
-    return path
-    
-
-# A dictionary that keeps adjacency information for all nodes.
-adj = {
-    "A":["B", "C", "D"],
-    "B":["A","D"],
-    "C":["A", "D","E"],
-    "D":["B", "C"],
-    "E":["C"]
-}
+# A dictionary that keeps information regarding edges and respective weights.
 
 weights = {
         "A":{"B":5, "C":10, "D":3},
         "B":{"A":5, "D":20},
         "C":{"A":10,"D":30,"E":50},
         "D":{"B":5, "C":40},
-        "E":{"C":8}
+        "E":{"C":8, "A":30}
 }
 
 start = "A"
-path = []
+nodes = []
+for node in weights:
+    if node!=start:
+        nodes.append(node)
 
-print("Path:",findPath(adj, start, path))
-print("Cost:", getCost(weights, path))
+# Get all the permutation sequences of the nodes in the form of a list of tuples.
+permutations = list(itertools.permutations(nodes))
 
+# Convert tuples to list and append "start" at the beginning and end.
+for i in range(0,len(permutations)):
+    fullPath = list(permutations[i])
+    fullPath.insert(0,"A")
+    fullPath.append("A")
+    permutations[i]=fullPath
+
+# Calculate the weights and choose the path with the least weight.
+bestCost = math.inf
+bestPath = None
+for candidatePath in permutations:
+    if getCost(weights,candidatePath)<bestCost:
+        bestCost = getCost(weights,candidatePath)
+        bestPath = candidatePath
+
+print(bestCost)
+print(bestPath)
 
 
 
