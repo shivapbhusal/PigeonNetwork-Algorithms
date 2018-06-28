@@ -27,6 +27,7 @@ def findPath(dists, start):
     # in classic dynamic programming manner
     for subset_size in range(2, n):
         for subset in itertools.combinations(range(1, n), subset_size):
+            print(subset)
             # Set bits for all nodes in this subset
             bits = 0
             for bit in subset:
@@ -65,8 +66,6 @@ def findPath(dists, start):
 
     return opt, list(reversed(path))
 
-    
-
 
 # A dictionary that keeps adjacency information and distances for all nodes.
 distances = {
@@ -76,9 +75,7 @@ distances = {
         3:{0:30,1:5,2:40}
 }
 
-start = 0
-
-print("Path:",findPath(distances,start))
+print(findPath(distances,0))
 
 
 
