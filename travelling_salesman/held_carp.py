@@ -2,6 +2,8 @@
 Python implementation of the famous travelling salesman problem.
 In this implementation, we just care whether all nodes are traversed.
 '''
+import math
+
 def findPath(adj, weights, start):
     C = dict()
     for node in adj:
@@ -9,7 +11,9 @@ def findPath(adj, weights, start):
             try:
                 C[node] = weights[start][node]
             except KeyError:
-                continue
+                C[node] = math.inf
+    for node in adj:
+
     return C
         
 
