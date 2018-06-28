@@ -23,6 +23,8 @@ def findPath(dists, start):
     for k in range(1, n):
         C[(1 << k, k)] = (dists[0][k], 0)
 
+    print(C)
+
     # Iterate subsets of increasing length and store intermediate results
     # in classic dynamic programming manner
     for subset_size in range(2, n):

@@ -20,18 +20,14 @@ function findPath(dists){
 	C = new Map();
 
 	for (let k = 1; k < n; k++){
-		C[{k},k] = distances.get(0).get(k)
+		C.set([1 << k, k],[distances.get(0).get(k),0]);
 	}
 	console.log(C);
 
 	for (let subSize = 2; subSize < n; subSize++){
 		for(let subset of Array.from(iter.permutations(arrayOfNodes,subSize))){
-			console.log(subset);
+			let bits = 0;
 		}
-
-		let comb = iter.permutations([1,2,3],2);
-		//console.log(Array.from(comb));
-		
 	}
 }
 
@@ -51,7 +47,6 @@ for (let i=0; i<N_NODES; i++){
 }
 
 console.log(distances);
-
 console.log(findPath(distances));
 
 
