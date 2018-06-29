@@ -7,6 +7,18 @@ function getRandomInt(min, max){
 	return Math.floor(Math.floor(min + (Math.random())*(max-min))) 
 }
 
+function getMinimum(res){
+  min =[]
+  minValue = Infinity;
+  for (let i=0;i<res.length;i++){
+    if (res[i][1]<minValue){
+      min = res[i];
+      minValue = res[i][1];
+    } 
+  }
+  return min; 
+}
+
 function areEqual(array1, array2) {
 	// Checks if two arrays are equal in values.
 	if (array1.length != array2.length){
@@ -74,35 +86,44 @@ function findPath(dists){
 					//console.log(getValue(C,[prev,m]));
                     //console.log(res);
 					//console.log([getValue(C,[prev,m])[0] + distances.get(m).get(z),m]);
+					//console.log(C);
 					res.push([getValue(C,[prev,m])[0] + distances.get(m).get(z),m]);
 				}
-				console.log(res);
-				C.set([bits, z],Math.min(...res));
+				//console.log(res);
+				C.set([bits, z],getMinimum(res));
 			}
 
 		}
 	}
 
+	//console.log(C);
+
 	let bits = (2**n -1) -1;
+	console.log(bits);
 	res = [];
 
-	for (let x=1; x<=n; x++){
-		res.append([getValue(C,[bits,x])[0] + distances.get(x).get(0),m])
+	for (let x=1; x<n; x++){
+		res.push([getValue(C,[bits,x])[0] + distances.get(x).get(0),x])
 	}
-	let opt, parent = Math.min(...res);
+	let minArray = Math.min(...res);
+	let opt = minArray[0];
+	let parent = minArray[1];
 
 	let path = [];
 
 	for (let i=0; i<n-1;i++){
-		path.append(parent);
+		path.push(parent);
 		let newBits = bits & ~(1 << parent);
-		_, parent = getValue(C, [bits,parent]);
+		let finalValues = getValue(C, [bits,parent]);
+		console.log(finalValues);
+		let dummy = finalValues;
+		parent = finalValues;
 		bits = newBits;
 	}
 
-	path.append(0);
+	path.push(0);
 
-	print(path);
+	//console.log(path);
 
 }
 
