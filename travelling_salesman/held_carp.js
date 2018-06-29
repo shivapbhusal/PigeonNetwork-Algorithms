@@ -41,6 +41,7 @@ function areEqual(array1, array2) {
  			ans = value;
  		}
  	});
+
  	if (ans) return ans;
  	else console.log("Key not found");
  }
@@ -96,17 +97,17 @@ function findPath(dists){
 		}
 	}
 
-	console.log(C);
+	//console.log(C);
 
 	let bits = (2**n -1) -1;
-	console.log(bits);
+	//console.log(bits);
 	let res = [];
 
 	for (let x=1; x<n; x++){
 		res.push([getValue(C,[bits,x])[0] + distances.get(x).get(0),x]);
 	}
 
-	console.log(res);
+	//console.log(res);
 
 	let minArray = getMinimum(res);
 	let opt = minArray[0];
@@ -115,10 +116,11 @@ function findPath(dists){
 	let path = [];
 
 	for (let i=0; i<n-1;i++){
+		console.log(parent);
 		path.push(parent);
 		let newBits = bits & ~(1 << parent);
 		let finalValues = getValue(C, [bits,parent]);
-		console.log(finalValues);
+		//console.log(finalValues);
 		let dummy = finalValues;
 		parent = finalValues;
 		bits = newBits;
