@@ -96,13 +96,15 @@ function findPath(dists){
 		}
 	}
 
-	//console.log(C);
+	console.log(C);
 
 	let bits = (2**n -1) -1;
 	console.log(bits);
 	res = [];
 
 	for (let x=1; x<n; x++){
+		console.log(x);
+		console.log(getValue(C,[bits,x]));
 		res.push([getValue(C,[bits,x])[0] + distances.get(x).get(0),x])
 	}
 	let minArray = Math.min(...res);
@@ -123,7 +125,7 @@ function findPath(dists){
 
 	path.push(0);
 
-	//console.log(path);
+	console.log(path);
 
 }
 
