@@ -76,7 +76,7 @@ function findPath(dists){
 				let prev = bits & ~(1 << z);
 				//console.log(prev);
 
-				let res = []
+				let res = [];
 
 				for (let m of subset){
 					if (m ==0 || m ==z){
@@ -100,14 +100,15 @@ function findPath(dists){
 
 	let bits = (2**n -1) -1;
 	console.log(bits);
-	res = [];
+	let res = [];
 
 	for (let x=1; x<n; x++){
-		console.log(x);
-		console.log(getValue(C,[bits,x]));
-		res.push([getValue(C,[bits,x])[0] + distances.get(x).get(0),x])
+		res.push([getValue(C,[bits,x])[0] + distances.get(x).get(0),x]);
 	}
-	let minArray = Math.min(...res);
+
+	console.log(res);
+
+	let minArray = getMinimum(res);
 	let opt = minArray[0];
 	let parent = minArray[1];
 
@@ -125,7 +126,7 @@ function findPath(dists){
 
 	path.push(0);
 
-	console.log(path);
+	return path;
 
 }
 

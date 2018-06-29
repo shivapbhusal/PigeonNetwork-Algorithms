@@ -31,9 +31,9 @@
  myMap = new Map(); 
 
  myMap.set([1,2,3],5);
+ myMap.set([1,2,3],10);
 
 console.log(myMap);
 
-let ans = getValue(myMap,[1,2,3]);
-console.log(ans);
-  
+console.log(getValue(myMap,[1,2,3]));
+console.log(getValue(myMap,[1,2]));  

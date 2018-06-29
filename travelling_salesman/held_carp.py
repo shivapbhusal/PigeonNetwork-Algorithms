@@ -28,6 +28,7 @@ def findPath(dists, start):
     # Iterate subsets of increasing length and store intermediate results
     # in classic dynamic programming manner
     for subset_size in range(2, n):
+        print(C)
         for subset in itertools.combinations(range(1, n), subset_size):
             print(subset)
             # Set bits for all nodes in this subset
@@ -43,6 +44,7 @@ def findPath(dists, start):
                 for m in subset:
                     if m == 0 or m == k:
                         continue
+                    print(prev, m)
                     res.append((C[(prev, m)][0] + dists[m][k], m))
                 C[(bits, k)] = min(res)
 
