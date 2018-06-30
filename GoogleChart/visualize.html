@@ -9,18 +9,30 @@
 
         // Put the data in the form of a Json table.
         var data = google.visualization.arrayToDataTable([
-          ['Algorithm', 'Total Delay'],
-          ['Round Robin',     11],
-          ['Probabilistic',      2],
-          ['Deterministic',  2],
-          ['DRR', 2]
+          ['S_FACTOR', 'Optimal', 'RoundRobin','Probabilistic','Deterministic','DRR'],
+          [1,11.47311416631253,11.551015928963057,20.804860291128513,11.87779938010986,11.60379262980869],
+          [2,12.20203719931091,12.652733337160669,22.45073398357687,12.62313629223511,12.725314086302669],
+          [3,11.705851360273359,13.204605908063606,20.893740707262364,12.217543584438271,13.10687207854214],
+          [4,10.35871460859425,12.878517566130665,18.244448748569784,10.803286317415932,12.750988058844099],
+          [5,9.721964956009948,13.230945232405434,17.23287036608806,10.092520544172926,12.981303025180335],
+          [6,9.137524236026623,13.328209934295177,15.757682551047752,9.391113564758742,13.134424749082378],
+          [7,8.524069937423466,13.212434085476406,14.53689225460254,8.650417525100526,13.076574355457565]
         ]);
 
         var options = {
-          title: 'Average Delay'
+          title: 'Average message delay', 
+
+          vAxis:{
+            title: 'Average delay'
+          },
+
+          hAxis:{
+            title: 'S_FACTOR (Log base 2 scale)'
+          }
+
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+        var chart = new google.visualization.LineChart(document.getElementById('columnchart'));
 
         chart.draw(data, options);
       }
