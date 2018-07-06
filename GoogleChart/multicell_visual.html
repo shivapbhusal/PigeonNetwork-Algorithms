@@ -10,14 +10,14 @@
         // Put the data in the form of a Json table.
         var data = google.visualization.arrayToDataTable([
           ['Algorithm', 'Total Delay'],
-          ['Round Robin',     11],
-          ['Probabilistic',      2],
-          ['Deterministic',  2],
-          ['DRR', 2]
+          ['Round Robin',     8.159472201563071],
+          ['Probabilistic',      5.8253923990448175],
+          ['Deterministic',  4.06219463885546],
+          ['DRR', 4.163758941577]
         ]);
 
         var options = {
-          title: 'Average Delay'
+          title: 'Average message delay'
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));

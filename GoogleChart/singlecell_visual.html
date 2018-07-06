@@ -7,9 +7,10 @@
 
       function drawChart() {
 
-        // Put the data in the form of a Json table.
+        // Put the data in the following format to generate the visualization.
         var data = google.visualization.arrayToDataTable([
           ['Algorithm', 'Total Delay'],
+	  ['Ideal' , 10],
           ['Round Robin',     11],
           ['Probabilistic',      2],
           ['Deterministic',  2],
